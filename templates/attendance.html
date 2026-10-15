@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Attendance Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="header">
+        Attendance Records
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in data %}
+                    <tr>
+                        <td>{{ row[0] }}</td>
+                        <td>{{ row[1] }}</td>
+                        <td>{{ row[2] }}</td>
+                        <td>{{ row[3] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="button-wrapper" style="text-align: center;">
+            <a href="/" class="btn dashboard-btn">Home</a>
+            <a href="/dashboard" class="btn attendance-btn">Dashboard</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Attendance Records</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        Attendance Records
+
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+
+            <table>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Date</th>
+
+                    <th>Time</th>
+
+                </tr>
+
+                {% for row in data %}
+
+                <tr>
+
+                    <td>{{ row[0] }}</td>
+
+                    <td>{{ row[1] }}</td>
+
+                    <td>{{ row[2] }}</td>
+
+                    <td>{{ row[3] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <center>
+
+            <a href="/" class="btn dashboard-btn">
+
+                Home
+
+            </a>
+
+            <a href="/dashboard" class="btn attendance-btn">
+
+                Dashboard
+
+            </a>
+
+        </center>
+
+    </div>
+
+</body>
+
+</html> -->
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Attendance</title>
+
+<link rel="stylesheet"
+href="{{ url_for('static', filename='style.css') }}">
+
+<style>
+
+table{
+    width:90%;
+    margin:auto;
+    border-collapse:collapse;
+}
+
+th{
+    background:#1e3a8a;
+    color:white;
+    padding:12px;
+}
+
+td{
+    padding:12px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+
+Attendance Records
+
+</div>
+
+<br>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+
+<td>{{ row[0] }}</td>
+<td>{{ row[1] }}</td>
+<td>{{ row[2] }}</td>
+<td>{{ row[3] }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+
+</html> -->
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Attendance</title>
+</head>
+
+<body>
+
+<h1>Attendance Records</h1>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Date</th>
+<th>Time</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+<td>{{row[0]}}</td>
+<td>{{row[1]}}</td>
+<td>{{row[2]}}</td>
+<td>{{row[3]}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html> -->

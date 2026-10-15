@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Smart Hostel AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Added this line  -->
+    <meta http-equiv="refresh" content="1">
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo">🏠 Smart Hostel AI</div>
+
+            <a href="/" class="nav-item">📷 Live Entry</a>
+            <a href="/dashboard" class="nav-item">📊 Dashboard</a>
+            <a href="/attendance" class="nav-item">📄 Attendance</a>
+
+            <div class="bottom">
+                B.Tech Capstone Project
+            </div>
+        </div>
+
+        <!-- MAIN AREA -->
+        <div class="main">
+
+            <!-- TOPBAR -->
+            <div class="topbar">
+                <div id="clock"></div>
+                <div class="admin">👤 Admin</div>
+            </div>
+
+            <!-- PAGE CONTENT -->
+            <div class="content">
+                {% block content %}{% endblock %}
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function updateClock() {
+            document.getElementById("clock").innerText = new Date().toLocaleString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+</body>
+
+</html>

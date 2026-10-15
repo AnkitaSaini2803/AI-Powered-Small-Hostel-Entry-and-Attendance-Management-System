@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <div class="header">
+        Admin Analytics Dashboard
+    </div>
+
+    <div class="container">
+        <div class="stats dashboard-stats">
+            <div class="stat-card">
+                <h3>📊 Total Entries</h3>
+                <h1>{{ total_entries }}</h1>
+            </div>
+            <div class="stat-card">
+                <h3>⚠ Unknown Attempts</h3>
+                <h1>{{ unknown_count }}</h1>
+            </div>
+            <div class="stat-card">
+                <h3>🕒 Current Time</h3>
+                <h4>{{ current_time }}</h4>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="card chart-card">
+                <h2>Attendance Analytics</h2>
+                <div class="chart-container">
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card table-card">
+                <h2>🏆 Top Students</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Entries</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for student in top_students %}
+                            <tr>
+                                <td>{{ student[0] }}</td>
+                                <td><strong>{{ student[1] }}</strong></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="nav-actions">
+            <a href="/" class="btn home-btn">Home</a>
+            <a href="/attendance" class="btn attendance-btn">Attendance</a>
+        </div>
+    </div>
+
+    <script>
+        new Chart(
+            document.getElementById("attendanceChart"),
+            {
+                type: "line",
+                data: {
+                    labels: {{ dates|tojson }},
+                    datasets: [{
+                        label: "Daily Entries",
+                        data: {{ counts|tojson }},
+                        fill: true,
+                        backgroundColor: 'rgba(37, 99, 235, 0.15)',
+                        borderColor: '#2563eb',
+                        borderWidth: 3,
+                        pointBackgroundColor: '#ffffff',
+                        pointBorderColor: '#2563eb',
+                        pointHoverRadius: 6,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff', font: { family: 'Segoe UI' } }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: 'rgba(255, 255, 255, 0.7)' }
+                        }
+                    }
+                }
+            }
+        );
+    </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>      yeh abhi wala 
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        Admin Analytics Dashboard
+
+    </div>
+
+    <div class="container">
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <h3>📊 Total Entries</h3>
+
+                <h1>{{ total_entries }}</h1>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>⚠ Unknown Attempts</h3>
+
+                <h1>{{ unknown_count }}</h1>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>🕒 Current Time</h3>
+
+                <h4>{{ current_time }}</h4>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Attendance Analytics</h2>
+
+            <div style="height:400px">
+
+                <canvas id="attendanceChart"></canvas>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>🏆 Top Students</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Entries</th>
+
+                </tr>
+
+                {% for student in top_students %}
+
+                <tr>
+
+                    <td>{{ student[0] }}</td>
+
+                    <td>{{ student[1] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <center>
+
+            <a href="/" class="btn dashboard-btn">
+
+                Home
+
+            </a>
+
+            <a href="/attendance" class="btn attendance-btn">
+
+                Attendance
+
+            </a>
+
+        </center>
+
+    </div>
+
+    <script>
+
+        new Chart(
+            document.getElementById(
+                "attendanceChart"
+            ),
+            {
+                type: "line",
+
+                data: {
+
+                    labels: {{ dates| tojson }},
+
+            datasets: [{
+
+                label: "Daily Entries",
+
+                data: {{ counts| tojson }},
+
+            fill: true,
+
+            tension: 0.4
+
+}]
+},
+
+            options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+
+}
+        );
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+    <div class="header">
+
+        AI-Powered Smart Hostel Entry System
+
+    </div>
+
+    <div class="container">
+
+        <h2 class="page-title">
+            Admin Analytics Dashboard
+        </h2>
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <h3>Total Entries</h3>
+
+                <h1>{{ total_entries }}</h1>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Unknown Attempts</h3>
+
+                <h1>{{ unknown_count }}</h1>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h3>Current Time</h3>
+
+                <h4>{{ current_time }}</h4>
+
+            </div>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Attendance Analytics</h2>
+
+            <canvas id="attendanceChart" height="100">
+            </canvas>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Top Students</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Name</th>
+
+                    <th>Total Entries</th>
+
+                </tr>
+
+                {% for student in top_students %}
+
+                <tr>
+
+                    <td>{{ student[0] }}</td>
+
+                    <td>{{ student[1] }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+        <center>
+
+            <a href="/" class="btn dashboard-btn">
+
+                Home
+
+            </a>
+
+            <a href="/attendance" class="btn attendance-btn">
+
+                Attendance Records
+
+            </a>
+
+        </center>
+
+    </div>
+
+    <script>
+
+        new Chart(
+            document.getElementById("attendanceChart"),
+            {
+                type: "line",
+
+                data: {
+                    labels: {{ dates| tojson }},
+            datasets: [{
+
+                label: "Daily Entries",
+
+                data: {{ counts| tojson }},
+
+            tension: 0.4,
+
+            fill: true
+
+        }]
+    }
+}
+        );
+
+    </script>
+
+</body>
+
+</html> -->
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+</head>
+
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<h2>
+Total Entries :
+{{total_entries}}
+</h2>
+
+</body>
+</html> -->

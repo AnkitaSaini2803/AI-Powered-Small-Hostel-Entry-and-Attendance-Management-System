@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS unknown_log(
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+date TEXT,
+time TEXT
+);
+
+# no use 

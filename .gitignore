@@ -1,0 +1,13 @@
+@"
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+.vscode/
+.ipynb_checkpoints/
+*.keras
+*.weights.h5
+*.npy
+lfw-deepfunneled/
+"@ | Set-Content -Path .gitignorea
